@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from '../../services/api'
+import api from '../../services/api';
 
 function Home(){
 const [filmes, setFilmes] = useState([]);
@@ -13,14 +13,27 @@ async function loadFilmes() {
             page: 1,
         }
     })
-    
+
+    setFilmes(response.data.results.slice(0, 10))
 }
+
 loadFilmes();
 }, [])
 
     return(
-        <div>
-            <h1>home</h1>
+        <div className="container">
+            <div className="lista-filmes">
+{filmes.map((filme)=> {
+    return(
+        <article key={filme.id}>
+            <strong>
+                {filme.title}
+            </strong>
+        </article>
+    )
+})}
+            </div>
+          
         </div>
     )
 }
