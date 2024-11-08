@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api from '../../services/api';
+import { Link } from "react-router-dom";
 
 function Home(){
 const [filmes, setFilmes] = useState([]);
@@ -29,6 +30,8 @@ loadFilmes();
             <strong>
                 {filme.title}
             </strong>
+            <img src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`} alt={filme.title} />
+            <Link to={`/filme/${filme.id}`}>Acessar</Link>
         </article>
     )
 })}
