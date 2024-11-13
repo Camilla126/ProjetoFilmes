@@ -32,7 +32,7 @@ loadFilme();
 return()=>{
     console.log("COMPONENTE FOI DESMONTADO")
 }
-}, [])
+}, [navigate, id])
 
 if(loading){
     return(
@@ -54,7 +54,7 @@ if(loading){
 <div className='area-buttons'>
     <button>Salvar</button>
     <button>
-        <a href="#">
+        <a target='_blank' rel='external' href={`https://youtube.com/results?search_query=${filme.title} Triler`}>
             Trailer
         </a>
     </button>
