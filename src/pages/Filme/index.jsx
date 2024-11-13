@@ -34,6 +34,24 @@ return()=>{
 }
 }, [navigate, id])
 
+function salvarFilme(){
+const minhaLista = localStorage.getItem("@primeflix")
+let filmesSalvos = JSON.parse(minhaLista) || [];
+
+const hasFilme = filmesSalvos.some( (filmesSalvo) => filmesSalvo.id === filme.id );
+
+
+if(hasFilme){
+    alert("ESSE FILME JÁ ESTÁ NA LISTA")
+return;
+}
+
+filmesSalvos.push(filme);
+localStorage.setItem("@primeflix", JSON.stringify(filmesSalvos))
+alert("FILME SALVO COM SUCESSO")
+
+}
+
 if(loading){
     return(
         <div className='filme-info'>
@@ -52,9 +70,9 @@ if(loading){
 <strong>Avaliação: {filme.vote_average} / 10</strong>
 
 <div className='area-buttons'>
-    <button>Salvar</button>
+    <button onClick={salvarFilme}>Salvar</button>
     <button>
-        <a target='_blank' rel='external' href={`https://youtube.com/results?search_query=${filme.title} Triler`}>
+        <a target='blank' rel='external' href={`https://youtube.com/results?search_query=${filme.title} Triler`}>
             Trailer
         </a>
     </button>
